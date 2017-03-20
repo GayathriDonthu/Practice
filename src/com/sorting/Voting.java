@@ -1,12 +1,15 @@
 package com.sorting;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.TreeMap;
 
 public class Voting {
 	public static void main(String[] args) {
-		String[] votings = { "a", "b", "a", "c", "b", "a", "a", "b", "b", "d" };
+		
+		// first method
+		
+		/*String[] votings = { "a", "b", "a", "c", "b", "a", "a", "b", "b", "d" };
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		for (int i = 0; i < votings.length; i++) {
 			int value = 1;
@@ -33,7 +36,30 @@ public class Voting {
 					winner = k;
 			}
 		}
-		System.out.println("maxValue:"+ maxValue + " and winner is:"+winner);
+		System.out.println("maxValue:"+ maxValue + " and winner is:"+winner);*/
+		
+		// second method
+		
+		String[] votings = { "d", "b", "a", "c", "d", "b", "a", "b", "b", "d", "a" , "d"};
+		
+		Map<String, Integer> map = new TreeMap<String, Integer>();
+		int maxValue=0;
+		for (int i = 0; i < votings.length; i++) {
+			map.put(votings[i], map.get(votings[i]) == null ? 1:map.get(votings[i])+1);
+			maxValue = (maxValue < map.get(votings[i]) ? map.get(votings[i]) : maxValue);
+		}
+		System.out.println("Map:" + map);
+		System.out.println("maxValue:"+ maxValue);
+				
+		List<Map.Entry<String, Integer>> list = new ArrayList();
+		list.addAll(map.entrySet());
+		
+		for(int i = list.size()-1 ; i >= 0 ; i--){
+			if(list.get(i).getValue() == maxValue){
+				System.out.println("Winner is:"+ list.get(i).getKey());
+				break;
+			}
+		}
 		
 	}
 }
