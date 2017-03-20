@@ -24,7 +24,6 @@ public class Voting {
 		String winner=null;
 		Set<String> keys = map.keySet();
 		for(String k : keys){
-			System.out.println("values are:"+ map.get(k));
 			if(maxValue < map.get(k)){
 				maxValue = map.get(k);
 				winner = k;
